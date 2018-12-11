@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="tmdb_url">https://api.themoviedb.org/3/discover/movie?api_key=</string>
+    <string name="image_path">http://image.tmdb.org/t/p/w185/</string>
+</resources>
