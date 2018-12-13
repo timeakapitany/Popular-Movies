@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,29 +20,53 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String MOVIE_URL = "movie.url";
     private MovieAdapter movieAdapter;
     private DiscoverMoviesAsyncTask discoverMoviesAsyncTask;
+    private int movieUrl = R.string.popular_url;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (savedInstanceState != null) {
+            movieUrl = savedInstanceState.getInt(MOVIE_URL);
+        }
         setupRecyclerView();
         startNetworkCall();
     }
 
-    private void setupRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        movieAdapter = new MovieAdapter();
-        recyclerView.setAdapter(movieAdapter);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sort_order, menu);
+        if (movieUrl == R.string.toprated_url) {
+            menu.findItem(R.id.menuTopRated).setChecked(true);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menuMostPopular) {
+            movieUrl = R.string.popular_url;
+            item.setChecked(true);
+        } else if (id == R.id.menuTopRated) {
+            movieUrl = R.string.toprated_url;
+            item.setChecked(true);
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+        startNetworkCall();
+        return true;
     }
 
 
-    public void startNetworkCall() {
-        discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
-        discoverMoviesAsyncTask.execute(getString(R.string.tmdb_url), getString(R.string.api_key));
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(MOVIE_URL, movieUrl);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -111,5 +137,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void setupRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        movieAdapter = new MovieAdapter();
+        recyclerView.setAdapter(movieAdapter);
+    }
+
+
+    public void startNetworkCall() {
+        discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
+        discoverMoviesAsyncTask.execute(getString(movieUrl), getString(R.string.api_key));
     }
 }
