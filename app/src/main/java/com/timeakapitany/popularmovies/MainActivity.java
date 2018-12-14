@@ -3,6 +3,7 @@ package com.timeakapitany.popularmovies;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.menuTopRated) {
             movieUrl = R.string.toprated_url;
             item.setChecked(true);
+        } else if (id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -77,8 +81,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void startNetworkCall() {
+        discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
+        discoverMoviesAsyncTask.execute(getString(movieUrl), getString(R.string.api_key));
+    }
+
+    private void setupRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        movieAdapter = new MovieAdapter();
+        recyclerView.setAdapter(movieAdapter);
+    }
+
     @SuppressLint("StaticFieldLeak")
-    public class DiscoverMoviesAsyncTask extends AsyncTask<String, Void, List<Movie>> {
+    class DiscoverMoviesAsyncTask extends AsyncTask<String, Void, List<Movie>> {
         private static final String TAG = "DiscoverMoviesAsyncTask";
 
 
@@ -137,18 +153,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    }
-
-    private void setupRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        movieAdapter = new MovieAdapter();
-        recyclerView.setAdapter(movieAdapter);
-    }
-
-
-    public void startNetworkCall() {
-        discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
-        discoverMoviesAsyncTask.execute(getString(movieUrl), getString(R.string.api_key));
     }
 }

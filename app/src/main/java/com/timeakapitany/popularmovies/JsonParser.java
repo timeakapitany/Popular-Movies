@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonParser {
+class JsonParser {
     private static final String TAG = "JsonParser";
 
     public static List<Movie> parseMovieJson(String json) {
@@ -27,7 +27,7 @@ public class JsonParser {
                 movie.setPopularity(jsonObject.getDouble("popularity"));
                 movie.setPosterPath(jsonObject.getString("poster_path"));
                 movie.setReleaseDate(jsonObject.getString("release_date"));
-                movie.setTitle(jsonObject.getString("title"));
+                movie.setTitle(jsonObject.getString("original_title"));
                 movie.setVoteAverage(jsonObject.getDouble("vote_average"));
 
                 movieList.add(movie);
