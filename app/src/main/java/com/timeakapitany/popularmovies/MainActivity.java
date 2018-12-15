@@ -3,13 +3,13 @@ package com.timeakapitany.popularmovies;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.menuTopRated) {
             movieUrl = R.string.toprated_url;
             item.setChecked(true);
-        } else if (id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -102,19 +100,21 @@ public class MainActivity extends AppCompatActivity {
         protected List<Movie> doInBackground(String... strings) {
             Log.d(TAG, "doInBackground: " + strings[0]);
             String movieFeed = downloadMovie(strings[0] + strings[1]);
-            if (movieFeed == null) {
-                Log.e(TAG, "doInBackground: error downloading");
-            } else {
-                Log.d(TAG, "doInBackground: " + movieFeed);
+            if (movieFeed != null) {
+                return JsonParser.parseMovieJson(movieFeed);
             }
-            return JsonParser.parseMovieJson(movieFeed);
+            return null;
         }
 
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            Log.d(TAG, "onPostExecute: " + movies);
-            movieAdapter.setItems(movies);
+            if (movies != null) {
+                Log.d(TAG, "onPostExecute: " + movies);
+                movieAdapter.setItems(movies);
+            } else {
+                Toast.makeText(MainActivity.this, "Something went wrong...", Toast.LENGTH_LONG).show();
+            }
         }
 
         private String downloadMovie(String urlPath) {

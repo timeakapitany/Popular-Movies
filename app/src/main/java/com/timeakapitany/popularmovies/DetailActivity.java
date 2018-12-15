@@ -17,7 +17,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Movie movie = getIntent().getParcelableExtra(CURRENT_MOVIE);
 
@@ -40,7 +42,6 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView plotSynopsis = findViewById(R.id.plot_synopsis);
         plotSynopsis.setText(movie.getOverview());
-
-
     }
+
 }
