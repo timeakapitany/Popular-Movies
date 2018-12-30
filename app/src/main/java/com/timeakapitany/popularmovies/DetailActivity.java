@@ -8,8 +8,20 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
     public static final String CURRENT_MOVIE = "current movie";
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.release_date)
+    TextView releaseDate;
+    @BindView(R.id.vote_average)
+    TextView voteAverage;
+    @BindView(R.id.plot_synopsis)
+    TextView plotSynopsis;
+
 
 
     @SuppressLint("SetTextI18n")
@@ -17,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        ButterKnife.bind(this);
         if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -31,16 +44,9 @@ public class DetailActivity extends AppCompatActivity {
                 .placeholder(R.drawable.placeholder)
                 .into(image);
 
-        TextView title = findViewById(R.id.title);
         title.setText(movie.getTitle());
-
-        TextView releaseDate = findViewById(R.id.release_date);
         releaseDate.setText(movie.getReleaseDate());
-
-        TextView voteAverage = findViewById(R.id.vote_average);
         voteAverage.setText(movie.getVoteAverage().toString());
-
-        TextView plotSynopsis = findViewById(R.id.plot_synopsis);
         plotSynopsis.setText(movie.getOverview());
     }
 
