@@ -2,6 +2,7 @@
     <string name="app_name">Popular Movies</string>
     <string name="popular_url">https://api.themoviedb.org/3/movie/popular?api_key=</string>
     <string name="toprated_url">https://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+    <string name="review_url">https://api.themoviedb.org/3/movie/%1$s/reviews?api_key=%2$s</string>
     <string name="image_path">http://image.tmdb.org/t/p/w185/</string>
     <string name="most_popular">Most Popular</string>
     <string name="top_rated">Top Rated</string>
@@ -9,4 +10,7 @@
     <string name="average_vote_title">Average vote:</string>
     <string name="plot_title">Plot:</string>
     <string name="detail_name">Movie Details</string>
+    <string name="reviews">Reviews</string>
+    <string name="review_name">Review</string>
+    <string name="reviews_name">Reviews</string>
 </resources>

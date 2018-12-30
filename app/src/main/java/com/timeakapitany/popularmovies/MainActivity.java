@@ -11,12 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -99,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected List<Movie> doInBackground(String... strings) {
             Log.d(TAG, "doInBackground: " + strings[0]);
-            String movieFeed = downloadMovie(strings[0] + strings[1]);
+            String movieFeed = NetworkUtils.downloadData(strings[0] + strings[1]);
             if (movieFeed != null) {
                 return JsonParser.parseMovieJson(movieFeed);
             }
@@ -117,40 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        private String downloadMovie(String urlPath) {
-            StringBuilder stringBuilder = new StringBuilder();
 
-            try {
-                URL url = new URL(urlPath);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                int response = connection.getResponseCode();
-                Log.d(TAG, "downloadMovie: the response code is " + response);
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-                int charsRead;
-                char[] inputBuffer = new char[500];
-                while (true) {
-                    charsRead = reader.read(inputBuffer);
-                    if (charsRead < 0) {
-                        break;
-                    }
-                    if (charsRead > 0) {
-                        stringBuilder.append(String.copyValueOf(inputBuffer), 0, charsRead);
-                    }
-                }
-                reader.close();
-                return stringBuilder.toString();
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "downloadMovie: Invalid URL " + e.getMessage());
-            } catch (IOException e) {
-                Log.e(TAG, "downloadMovie: IO exception reading data " + e.getMessage());
-            } catch (SecurityException e) {
-                Log.e(TAG, "downloadMovie: Security exception: needs permission " + e.getMessage());
-                e.printStackTrace();
-            }
-            return null;
-        }
 
 
     }

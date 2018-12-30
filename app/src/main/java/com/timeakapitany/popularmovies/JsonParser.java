@@ -52,4 +52,35 @@ class JsonParser {
         }
         return movieList;
     }
+
+    static List<Review> parseReviewJson(String json) {
+        List<Review> reviewList = new ArrayList<>();
+
+        try {
+
+            JSONObject reviewObject = new JSONObject(json);
+            JSONArray results = reviewObject.getJSONArray("results");
+
+            Review review;
+            for (int i = 0; i < results.length(); i++) {
+                review = new Review();
+                JSONObject jsonObject = results.getJSONObject(i);
+                if (jsonObject.has("id")) {
+                    review.setId(jsonObject.getString("id"));
+                }
+                if (jsonObject.has("author")) {
+                    review.setAuthor(jsonObject.getString("author"));
+                }
+                if (jsonObject.has("content")) {
+                    review.setContent(jsonObject.getString("content"));
+                }
+
+                reviewList.add(review);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reviewList;
+    }
 }
