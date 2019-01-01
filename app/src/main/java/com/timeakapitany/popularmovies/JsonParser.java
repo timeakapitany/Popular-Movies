@@ -53,6 +53,46 @@ class JsonParser {
         return movieList;
     }
 
+    static List<Trailer> parseTrailerJson(String json) {
+        List<Trailer> trailerList = new ArrayList<>();
+
+        try {
+
+            JSONObject trailerObject = new JSONObject(json);
+            JSONArray results = trailerObject.getJSONArray("results");
+
+            Trailer trailer;
+            for (int i = 0; i < results.length(); i++) {
+                trailer = new Trailer();
+                JSONObject jsonObject = results.getJSONObject(i);
+                if (jsonObject.has("id")) {
+                    trailer.setId(jsonObject.getString("id"));
+                }
+                if (jsonObject.has("key")) {
+                    trailer.setKey(jsonObject.getString("key"));
+                }
+                if (jsonObject.has("name")) {
+                    trailer.setName(jsonObject.getString("name"));
+                }
+                if (jsonObject.has("site")) {
+                    trailer.setSite(jsonObject.getString("site"));
+                }
+                if (jsonObject.has("size")) {
+                    trailer.setSize(jsonObject.getInt("size"));
+                }
+                if (jsonObject.has("type")) {
+                    trailer.setType(jsonObject.getString("type"));
+                }
+
+                trailerList.add(trailer);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return trailerList;
+    }
+
     static List<Review> parseReviewJson(String json) {
         List<Review> reviewList = new ArrayList<>();
 

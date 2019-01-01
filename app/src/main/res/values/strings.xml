@@ -13,4 +13,9 @@
     <string name="reviews">Reviews</string>
     <string name="review_name">Review</string>
     <string name="reviews_name">Reviews</string>
+    <string name="trailer_image_path">https://img.youtube.com/vi/%1$s/0.jpg</string>
+    <string name="trailer_url">https://api.themoviedb.org/3/movie/%1$s/videos?api_key=%2$s</string>
+    <string name="trailer_video_url">https://www.youtube.com/watch?v=%1$s</string>
+
+
 </resources>
