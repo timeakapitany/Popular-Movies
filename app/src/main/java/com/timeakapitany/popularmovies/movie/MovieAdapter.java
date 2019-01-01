@@ -1,4 +1,4 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.movie;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.squareup.picasso.Picasso;
+import com.timeakapitany.popularmovies.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     private List<Movie> items = new ArrayList<>();
 

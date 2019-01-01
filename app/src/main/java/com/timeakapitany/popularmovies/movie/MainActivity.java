@@ -1,4 +1,4 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.movie;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.timeakapitany.popularmovies.JsonParser;
+import com.timeakapitany.popularmovies.NetworkUtils;
+import com.timeakapitany.popularmovies.R;
 
 import java.util.List;
 

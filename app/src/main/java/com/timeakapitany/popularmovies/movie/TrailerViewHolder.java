@@ -1,8 +1,10 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.movie;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.timeakapitany.popularmovies.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

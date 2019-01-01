@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".movie.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,30 +23,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".movie.DetailActivity"
             android:launchMode="singleTop"
             android:label="@string/detail_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".movie.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.timeakapitany.popularmovies.MainActivity" />
+                android:value="com.timeakapitany.popularmovies.movie.MainActivity" />
         </activity>
         <activity
-            android:name=".ReviewActivity"
+            android:name=".review.ReviewActivity"
             android:label="@string/reviews_name"
             android:launchMode="singleTop"
-            android:parentActivityName=".DetailActivity">
+            android:parentActivityName=".movie.DetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.timeakapitany.popularmovies.DetailActivity" />
+                android:value="com.timeakapitany.popularmovies.movie.DetailActivity" />
         </activity>
         <activity
-            android:name=".ReviewDetailActivity"
+            android:name=".review.ReviewDetailActivity"
             android:label="@string/review_name"
-            android:parentActivityName=".ReviewActivity">
+            android:parentActivityName=".review.ReviewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.timeakapitany.popularmovies.ReviewActivity" />
+                android:value="com.timeakapitany.popularmovies.review.ReviewActivity" />
         </activity>
     </application>
 

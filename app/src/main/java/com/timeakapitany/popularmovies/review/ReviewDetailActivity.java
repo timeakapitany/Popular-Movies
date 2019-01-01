@@ -1,9 +1,11 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.review;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.timeakapitany.popularmovies.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

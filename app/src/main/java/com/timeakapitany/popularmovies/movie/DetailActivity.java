@@ -1,4 +1,4 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.movie;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.timeakapitany.popularmovies.JsonParser;
+import com.timeakapitany.popularmovies.NetworkUtils;
+import com.timeakapitany.popularmovies.R;
+import com.timeakapitany.popularmovies.review.ReviewActivity;
 
 import java.util.List;
 

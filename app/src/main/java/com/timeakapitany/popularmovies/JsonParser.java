@@ -1,5 +1,9 @@
 package com.timeakapitany.popularmovies;
 
+import com.timeakapitany.popularmovies.movie.Movie;
+import com.timeakapitany.popularmovies.movie.Trailer;
+import com.timeakapitany.popularmovies.review.Review;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,10 +11,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-class JsonParser {
+public class JsonParser {
     private static final String TAG = "JsonParser";
 
-    static List<Movie> parseMovieJson(String json) {
+    public static List<Movie> parseMovieJson(String json) {
         List<Movie> movieList = new ArrayList<>();
 
         try {
@@ -53,7 +57,7 @@ class JsonParser {
         return movieList;
     }
 
-    static List<Trailer> parseTrailerJson(String json) {
+    public static List<Trailer> parseTrailerJson(String json) {
         List<Trailer> trailerList = new ArrayList<>();
 
         try {
@@ -93,7 +97,7 @@ class JsonParser {
         return trailerList;
     }
 
-    static List<Review> parseReviewJson(String json) {
+    public static List<Review> parseReviewJson(String json) {
         List<Review> reviewList = new ArrayList<>();
 
         try {

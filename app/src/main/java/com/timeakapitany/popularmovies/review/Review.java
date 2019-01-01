@@ -1,4 +1,4 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.review;
 
 import android.os.Parcel;
 import android.os.Parcelable;

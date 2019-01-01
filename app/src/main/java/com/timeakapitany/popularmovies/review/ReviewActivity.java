@@ -1,4 +1,4 @@
-package com.timeakapitany.popularmovies;
+package com.timeakapitany.popularmovies.review;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -8,6 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.timeakapitany.popularmovies.JsonParser;
+import com.timeakapitany.popularmovies.NetworkUtils;
+import com.timeakapitany.popularmovies.R;
+import com.timeakapitany.popularmovies.movie.Movie;
 
 import java.util.List;
 
