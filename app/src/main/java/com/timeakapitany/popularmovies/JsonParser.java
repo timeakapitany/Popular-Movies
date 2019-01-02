@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonParser {
-    private static final String TAG = "JsonParser";
 
     public static List<Movie> parseMovieJson(String json) {
         List<Movie> movieList = new ArrayList<>();

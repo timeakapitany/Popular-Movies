@@ -1,5 +1,6 @@
 package com.timeakapitany.popularmovies.movie;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
@@ -17,7 +18,6 @@ import java.util.List;
 
 public class MovieViewModel extends AndroidViewModel {
     public MutableLiveData<List<Movie>> movieLiveData = new MutableLiveData<>();
-    private DiscoverMoviesAsyncTask discoverMoviesAsyncTask;
     private int movieUrl = R.string.popular_url;
 
     public MovieViewModel(@NonNull Application application) {
@@ -37,10 +37,11 @@ public class MovieViewModel extends AndroidViewModel {
     }
 
     private void startNetworkCall() {
-        discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
+        DiscoverMoviesAsyncTask discoverMoviesAsyncTask = new DiscoverMoviesAsyncTask();
         discoverMoviesAsyncTask.execute(getApplication().getResources().getString(movieUrl), getApplication().getResources().getString(R.string.api_key));
     }
 
+    @SuppressLint("StaticFieldLeak")
     class DiscoverMoviesAsyncTask extends AsyncTask<String, Void, List<Movie>> {
         private static final String TAG = "DiscoverMoviesAsyncTask";
 

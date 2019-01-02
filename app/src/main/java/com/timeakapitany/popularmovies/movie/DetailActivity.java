@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
     ToggleButton favoriteButton;
 
 
-    Movie movie;
+    private Movie movie;
     private TrailerAdapter trailerAdapter;
     private TrailerAsyncTask trailerAsyncTask;
 

@@ -14,7 +14,7 @@ import com.timeakapitany.popularmovies.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     private List<Movie> items = new ArrayList<>();
 

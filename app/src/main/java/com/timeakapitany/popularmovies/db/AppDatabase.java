@@ -7,7 +7,7 @@ import android.content.Context;
 
 import com.timeakapitany.popularmovies.movie.Movie;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE = null;

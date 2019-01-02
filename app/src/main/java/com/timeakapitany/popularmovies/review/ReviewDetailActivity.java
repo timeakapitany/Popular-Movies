@@ -17,7 +17,7 @@ public class ReviewDetailActivity extends AppCompatActivity {
     @BindView(R.id.review_detail)
     TextView reviewDetail;
 
-    Review review;
+    private Review review;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
