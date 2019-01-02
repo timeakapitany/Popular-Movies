@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NetworkUtils {
-    public static final String TAG = NetworkUtils.class.getSimpleName();
+    private static final String TAG = NetworkUtils.class.getSimpleName();
 
     public static String downloadData(String urlPath) {
         StringBuilder stringBuilder = new StringBuilder();

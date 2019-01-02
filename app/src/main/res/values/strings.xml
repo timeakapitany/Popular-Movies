@@ -16,6 +16,9 @@
     <string name="trailer_image_path">https://img.youtube.com/vi/%1$s/0.jpg</string>
     <string name="trailer_url">https://api.themoviedb.org/3/movie/%1$s/videos?api_key=%2$s</string>
     <string name="trailer_video_url">https://www.youtube.com/watch?v=%1$s</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="favorites">Favorites</string>
 
 
 </resources>

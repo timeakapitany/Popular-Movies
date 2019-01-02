@@ -9,13 +9,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.squareup.picasso.Picasso;
 import com.timeakapitany.popularmovies.JsonParser;
 import com.timeakapitany.popularmovies.NetworkUtils;
 import com.timeakapitany.popularmovies.R;
+import com.timeakapitany.popularmovies.db.AppDatabase;
 import com.timeakapitany.popularmovies.review.ReviewActivity;
 
 import java.util.List;
@@ -33,6 +36,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView voteAverage;
     @BindView(R.id.plot_synopsis)
     TextView plotSynopsis;
+    @BindView(R.id.favorite_button)
+    ToggleButton favoriteButton;
+
 
     Movie movie;
     private TrailerAdapter trailerAdapter;
@@ -66,8 +72,22 @@ public class DetailActivity extends AppCompatActivity {
         voteAverage.setText(movie.getVoteAverage().toString());
         plotSynopsis.setText(movie.getOverview());
 
+        Boolean isFavorite = AppDatabase.getInstance(getApplicationContext()).favoriteDao().isFavorite(movie.getId());
+        favoriteButton.setChecked(isFavorite);
+
         setupRecyclerView();
         startNetworkCall();
+
+        favoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppDatabase.getInstance(getApplicationContext()).favoriteDao().insertFavorites(movie);
+                } else {
+                    AppDatabase.getInstance(getApplicationContext()).favoriteDao().deleteFavorites(movie);
+                }
+            }
+        });
     }
 
     public void onReviewButtonClicked(View view) {
